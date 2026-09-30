@@ -28,6 +28,7 @@ public class AssignGrades {
 
         return bestScore;
     }
+
     public static char getGradeByScore(int score){
         int bestScore = getBestScore();
         return grades[ Math.min((bestScore-score-1) / 10, 4) ] ;
