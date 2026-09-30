@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class AssignGrades {
 
-    ///static int  numberOfStudents = 0;
     static int[] studentScore = null;
-    ////static int bestScore;
+    static char[] grades = {'A', 'B', 'C', 'D', 'F'};
 
     public static void readStudentScore(){
         Scanner scanner = new Scanner(System.in);
@@ -31,6 +30,8 @@ public class AssignGrades {
     }
     public static char getGradeByScore(int score){
         int bestScore = getBestScore();
+        return grades[ Math.min((bestScore-score-1) / 10, 4) ] ;
+        /*
         if(score >= bestScore - 10)
             return 'A';
         else if(score >= bestScore - 20)
@@ -41,6 +42,7 @@ public class AssignGrades {
             return 'D';
         else
             return 'F';
+         */
     }
 
     public static void printStudentGrade(){
