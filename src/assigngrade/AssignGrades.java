@@ -6,6 +6,7 @@ public class AssignGrades {
 
     static int[] studentScore = null;
     static char[] grades = {'A', 'B', 'C', 'D', 'F'};
+    static int bestScore = 0;
 
     public static void readStudentScore(){
         Scanner scanner = new Scanner(System.in);
@@ -15,35 +16,16 @@ public class AssignGrades {
 
         studentScore = new int[numberOfStudents];
         System.out.println("Enter " + numberOfStudents + " scores: ");
-        for (int i=0; i<studentScore.length; ++i)
+        for (int i=0; i<studentScore.length; ++i) {
             studentScore[i] = scanner.nextInt();
-    }
 
-    public static int getBestScore(){
-        int bestScore = studentScore[0];
-
-        for (int i=1; i<studentScore.length; ++i)
             if(studentScore[i] > bestScore)
                 bestScore = studentScore[i];
-
-        return bestScore;
+        }
     }
 
     public static char getGradeByScore(int score){
-        int bestScore = getBestScore();
-        return grades[ Math.min((bestScore-score-1) / 10, 4) ] ;
-        /*
-        if(score >= bestScore - 10)
-            return 'A';
-        else if(score >= bestScore - 20)
-            return 'B';
-        else if(score >= bestScore - 30)
-            return 'C';
-        else if(score >= bestScore - 40)
-            return 'D';
-        else
-            return 'F';
-         */
+        return grades[ Math.min((bestScore-score-1) / 10, studentScore.length-1) ] ;
     }
 
     public static void printStudentGrade(){
@@ -52,10 +34,8 @@ public class AssignGrades {
     }
 
     public static void main(String[] args) {
-
         readStudentScore();
         printStudentGrade();
-
     }
 
 }
